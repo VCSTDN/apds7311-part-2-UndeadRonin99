@@ -23,6 +23,7 @@ jobs:
 
     - name: Install dependencies
       run: npm install
+      working-directory: ./backend
 
     - name: Lint code (optional, only if you have linting setup)
       run: npm run lint

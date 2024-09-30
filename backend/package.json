@@ -2,7 +2,8 @@
   "name": "backend",
   "version": "1.0.0",
 "scripts": {
-  "test": "echo \"No tests available yet.\""
+  "test": "echo \"No tests available yet.\"",
+  "lint": "eslint ."
 },
   "dependencies": {
     "argon2": "^0.41.1",
