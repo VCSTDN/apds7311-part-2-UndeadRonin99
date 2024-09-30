@@ -44,7 +44,7 @@ jobs:
         run: npm run lint
         continue-on-error: true  # Optional: don't fail the build if linting fails
 
-      # Step 7: SonarCloud Analysis for static code analysis and security checks
+      # Step 7: SonarCloud Analysis for static code analysis and security checks1
       - name: SonarCloud Scan
         uses: SonarSource/sonarcloud-github-action@v2
         env:
