@@ -1,16 +1,17 @@
 // eslint.config.js
 export default [
     {
+      ignores: ["node_modules/**"],
+    },
+    {
       files: ["**/*.js"],
       languageOptions: {
         ecmaVersion: "latest",
         sourceType: "module",
       },
       rules: {
-        indent: ["error", 2],
-        "linebreak-style": ["error", "unix"],
-        quotes: ["error", "double"],
         semi: ["error", "always"],
+        quotes: ["error", "double"],
       },
     },
   ];
