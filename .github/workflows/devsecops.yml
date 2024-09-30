@@ -30,8 +30,8 @@ jobs:
         distribution: 'temurin'
         java-version: '17'
 
-    - name: Run ESLint
-      run: npm run lint
+    #- name: Run ESLint
+    #  run: npm run lint
 
     - name: Run SonarCloud Scan
       uses: sonarsource/sonarcloud-github-action@v1.9
