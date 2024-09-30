@@ -46,4 +46,6 @@ jobs:
             -Dsonar.projectKey=TylerFriedman_customer-portal
             -Dsonar.organization=tylerfriedman
             -Dsonar.sources=./backend
-            
+            -Dsonar.c.file.suffixes=-
+            -Dsonar.cpp.file.suffixes=-
+            -Dsonar.objc.file.suffixes=-
