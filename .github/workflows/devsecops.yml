@@ -17,17 +17,17 @@ jobs:
     - name: Checkout code
       uses: actions/checkout@v2
 
-    # Step 2: Set up Node.js
+    # Step 2: Set up Node.js (use version 18 to avoid warnings)
     - name: Setup Node.js
       uses: actions/setup-node@v3
       with:
-        node-version: '16'
+        node-version: '18'
 
     # Step 3: Install Dependencies
     - name: Install Dependencies
       run: npm install
 
-    # Step 4: Run Unit Tests1
+    # Step 4: Run Unit Tests
     - name: Run Unit Tests
       run: npm test
 
