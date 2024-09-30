@@ -49,3 +49,4 @@ jobs:
             -Dsonar.projectKey=TylerFriedman_customer-portal
             -Dsonar.organization=tylerfriedman
             -Dsonar.sources=./backend
+            
