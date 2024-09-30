@@ -1,4 +1,4 @@
-name: CI/CD Pipeline
+name: DevSecOps Pipeline
 
 on:
   push:
@@ -11,33 +11,29 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-
     steps:
-    - name: Checkout code
+    - name: Checkout repository
       uses: actions/checkout@v2
 
     - name: Setup Node.js
       uses: actions/setup-node@v3
       with:
-        node-version: '18.x'
+        node-version: 18
 
     - name: Install dependencies
       run: npm install
       working-directory: ./backend
 
-    - name: Lint code (optional, only if you have linting setup)
-      run: npm run lint
-      continue-on-error: true
+    - name: Install Java 17
+      uses: actions/setup-java@v3
+      with:
+        distribution: 'temurin'
+        java-version: '17'
 
-    - name: SonarCloud Scan
+    - name: Run ESLint
+      run: npm run lint
+
+    - name: Run SonarCloud Scan
       uses: sonarsource/sonarcloud-github-action@v1.9
       env:
         SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-      with:
-        args: >
-          -Dsonar.projectKey=<your_project_key>
-          -Dsonar.organization=<your_organization>
-          -Dsonar.sources=.
-
-    - name: Deploy (optional, add deployment logic here)
-      run: echo "Deploy step if needed."

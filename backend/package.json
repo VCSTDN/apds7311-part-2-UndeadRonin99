@@ -1,10 +1,11 @@
 {
   "name": "backend",
   "version": "1.0.0",
-"scripts": {
-  "test": "echo \"No tests available yet.\"",
-  "lint": "eslint ."
-},
+
+  "scripts": {
+    "test": "echo \"No tests available yet.\"",
+    "lint": "eslint ."
+  },
   "dependencies": {
     "argon2": "^0.41.1",
     "cookie-parser": "^1.4.6",
@@ -20,5 +21,8 @@
     "mongodb": "^6.9.0",
     "mongoose": "^8.7.0",
     "morgan": "^1.10.0"
+  },
+  "devDependencies": {
+    "eslint": "^9.11.1"
   }
 }
