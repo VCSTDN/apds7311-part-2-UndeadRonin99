@@ -2,9 +2,9 @@
   "name": "backend",
   "version": "1.0.0",
   "scripts": {
-  "test": "echo \"No tests available yet.\"",
-  "lint": "eslint ."
-},
+    "test": "echo \"No tests available yet.\"",
+    "lint": "eslint ."
+  },
   "dependencies": {
     "argon2": "^0.41.1",
     "cookie-parser": "^1.4.6",
