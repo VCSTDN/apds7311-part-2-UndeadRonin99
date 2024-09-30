@@ -13,24 +13,45 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      # Step 1: Checkout the code from the repository
       - name: Checkout code
         uses: actions/checkout@v2
 
+      # Step 2: Set up Node.js environment
       - name: Set up Node.js
         uses: actions/setup-node@v3
         with:
           node-version: '18'
 
+      # Step 3: Install dependencies
       - name: Install dependencies
         run: npm install
+        working-directory: ./backend
 
+      # Step 4: Set up Java Development Kit (JDK) for SonarCloud scanning
       - name: Set up JDK 17
         uses: actions/setup-java@v3
         with:
           distribution: 'temurin'
           java-version: '17'
 
-      # Linting step (optional)
+      # Step 5: Set JAVA_HOME to JDK 17 to ensure SonarCloud uses it
+      - name: Set Java 17 as JAVA_HOME
+        run: echo "JAVA_HOME=$(dirname $(dirname $(readlink -f $(which java))))" >> $GITHUB_ENV
+
+      # Step 6: Linting step to ensure code quality
       - name: Run linter
         run: npm run lint
         continue-on-error: true  # Optional: don't fail the build if linting fails
+
+      # Step 7: SonarCloud Analysis for static code analysis and security checks1
+      - name: SonarCloud Scan
+        uses: SonarSource/sonarcloud-github-action@v2
+        env:
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+        with:
+          args: >
+            -Dsonar.projectKey=${{ secrets.SONAR_PROJECT_KEY }}
+            -Dsonar.organization=${{ secrets.SONAR_ORG }}
+            -Dsonar.sources=./backend 
+            -Dsonar.host.url=https://sonarcloud.io
