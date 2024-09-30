@@ -1,18 +1,15 @@
-// eslint.config.js
-export default [
-    {
-      ignores: ["node_modules/**"],
-    },
-    {
-      files: ["**/*.js"],
-      languageOptions: {
-        ecmaVersion: "latest",
-        sourceType: "module",
-      },
-      rules: {
-        semi: ["error", "always"],
-        quotes: ["error", "double"],
-      },
-    },
-  ];
-  //test
+module.exports = {
+  env: {
+    browser: true,
+    es2021: true,
+    node: true,
+  },
+  extends: 'eslint:recommended',
+  parserOptions: {
+    ecmaVersion: 12,
+    sourceType: 'module',
+  },
+  rules: {
+    // Custom rules go here
+  },
+};
