@@ -1,0 +1,49 @@
+name: DevSecOps Pipeline
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+
+    steps:
+    # Step 1: Checkout Code
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    # Step 2: Set up Node.js
+    - name: Setup Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: '16'
+
+    # Step 3: Install Dependencies
+    - name: Install Dependencies
+      run: npm install
+
+    # Step 4: Run Unit Tests1
+    - name: Run Unit Tests
+      run: npm test
+
+    # Step 5: Run Static Code Analysis (SAST) with SonarCloud
+    - name: Run SAST with SonarCloud
+      uses: sonarsource/sonarcloud-github-action@v1.9
+      env:
+        SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        args: >
+          -Dsonar.projectKey=customer-portal
+          -Dsonar.organization=tylerfriedman
+          -Dsonar.sources=./backend
+          -Dsonar.host.url=https://sonarcloud.io
+
+    # Step 6: Dependency Vulnerability Scan
+    - name: Run NPM Audit
+      run: npm audit
