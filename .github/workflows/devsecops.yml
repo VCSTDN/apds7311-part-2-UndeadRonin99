@@ -34,12 +34,9 @@ jobs:
           distribution: 'temurin'
           java-version: '17'
 
-      # Step 5: Run linting (optional, doesn't fail the build if it fails)
-      - name: Run linter
-        run: npm run lint
-        continue-on-error: true
+    
 
-      # Step 6: SonarCloud Analysis
+      # Step 5: SonarCloud Analysis
       - name: SonarCloud Scan
         uses: sonarsource/sonarcloud-github-action@v2
         env:
@@ -49,4 +46,3 @@ jobs:
             -Dsonar.projectKey=TylerFriedman_customer-portal
             -Dsonar.organization=tylerfriedman
             -Dsonar.sources=./backend
-            
