@@ -26,6 +26,7 @@ jobs:
       # Step 3: Install dependencies
       - name: Install dependencies
         run: npm install
+        working-directory: ./backend
 
       # Step 4: Set up Java Development Kit (JDK) for SonarCloud scanning
       - name: Set up JDK 17
@@ -41,7 +42,7 @@ jobs:
 
       # Step 6: SonarCloud Analysis for static code analysis and security checks
       - name: SonarCloud Scan
-        uses: sonarsource/sonarcloud-github-action@v1.9
+        uses: SonarSource/sonarcloud-github-action@v2
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
         with:
