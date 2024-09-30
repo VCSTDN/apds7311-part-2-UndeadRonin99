@@ -2,6 +2,8 @@
   "name": "backend",
   "version": "1.0.0",
   "scripts": {
+    "server" :  "node server.js",
+
     "test": "echo \"No tests available yet.\" && exit 0"
   },
   "keywords": [],
