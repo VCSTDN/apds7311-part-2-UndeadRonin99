@@ -3,6 +3,7 @@ const router = express.Router();
 const { registerUser, loginUser } = require('../controllers/authController');
 const { body } = require('express-validator');
 const jwt = require('jsonwebtoken');
+const rateLimit = require('express-rate-limit');
 
 // Middleware to verify token
 const auth = (req, res, next) => {
@@ -20,6 +21,13 @@ const auth = (req, res, next) => {
     }
 };
 
+// Rate limiter for login route
+const loginLimiter = rateLimit({
+    windowMs: 15 * 60 * 1000, // 15 minutes
+    max: 10, // Limit each IP to 10 requests per windowMs
+    message: 'Too many login attempts from this IP, please try again after 15 minutes.',
+});
+
 // Registration Route
 router.post(
     '/register',
@@ -33,9 +41,10 @@ router.post(
     registerUser
 );
 
-// Login Route
+// Login Route with rate limiting
 router.post(
     '/login',
+    loginLimiter, // Apply rate limiting to login route
     [
         body('username').trim().escape().matches(/^[a-zA-Z0-9_]{3,30}$/).withMessage('Username is required and must be alphanumeric.'),
         body('password').notEmpty().withMessage('Password is required.'),

@@ -8,9 +8,8 @@ const https = require('https');
 const http = require('http');
 const path = require('path');
 const hpp = require('hpp');
-const rateLimit = require('express-rate-limit');
 const cookieParser = require('cookie-parser');
-const ExpressBrute = require('express-brute');
+const rateLimit = require('express-rate-limit'); // New rate limiting library
 const csurf = require('csurf');
 
 const connectDB = require('./config/db');
@@ -77,15 +76,18 @@ app.use((req, res, next) => {
 
 // Rate Limiting
 const limiter = rateLimit({
-    windowMs: 15 * 60 * 1000,
+    windowMs: 15 * 60 * 1000, // 15 minutes
     max: 100,
 });
 app.use(limiter);
 
-// Brute-force protection
-const store = new ExpressBrute.MemoryStore();
-const bruteforce = new ExpressBrute(store);
-app.use('/api/auth/login', bruteforce.prevent);
+// Brute-force protection (New code with express-rate-limit for login route)
+const loginLimiter = rateLimit({
+    windowMs: 15 * 60 * 1000, // 15 minutes
+    max: 10, // Limit each IP to 10 requests per window
+    message: 'Too many login attempts from this IP, please try again after 15 minutes.',
+});
+app.use('/api/auth/login', loginLimiter);
 
 // Routes
 const authRoutes = require('./routes/auth');
