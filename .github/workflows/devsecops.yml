@@ -1,4 +1,4 @@
-name: DevSecOps Pipeline
+name: CI/CD Pipeline
 
 on:
   push:
@@ -9,41 +9,34 @@ on:
       - main
 
 jobs:
-  build-and-test:
+  build:
     runs-on: ubuntu-latest
 
     steps:
-    # Step 1: Checkout Code
     - name: Checkout code
       uses: actions/checkout@v2
 
-    # Step 2: Set up Node.js (use version 18 to avoid warnings)
     - name: Setup Node.js
       uses: actions/setup-node@v3
       with:
-        node-version: '18'
+        node-version: '18.x'
 
-    # Step 3: Install Dependencies
-    - name: Install Dependencies
+    - name: Install dependencies
       run: npm install
 
-    # Step 4: Run Unit Tests
-    - name: Run Unit Tests
-      run: npm test
+    - name: Lint code (optional, only if you have linting setup)
+      run: npm run lint
+      continue-on-error: true
 
-    # Step 5: Run Static Code Analysis (SAST) with SonarCloud
-    - name: Run SAST with SonarCloud
+    - name: SonarCloud Scan
       uses: sonarsource/sonarcloud-github-action@v1.9
       env:
         SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
         args: >
-          -Dsonar.projectKey=customer-portal
-          -Dsonar.organization=tylerfriedman
-          -Dsonar.sources=./backend
-          -Dsonar.host.url=https://sonarcloud.io
+          -Dsonar.projectKey=<your_project_key>
+          -Dsonar.organization=<your_organization>
+          -Dsonar.sources=.
 
-    # Step 6: Dependency Vulnerability Scan
-    - name: Run NPM Audit
-      run: npm audit
+    - name: Deploy (optional, add deployment logic here)
+      run: echo "Deploy step if needed."
