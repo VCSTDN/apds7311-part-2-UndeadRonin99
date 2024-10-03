@@ -1,0 +1,25 @@
+<div class="payment-form">
+    <form (ngSubmit)="onSubmit()">
+        <div>
+            <label for="amount">Amount:</label>
+            <input type="number" id="amount" [(ngModel)]="paymentForm.amount" name="amount" required>
+        </div>
+        <div>
+            <label for="currency">Currency:</label>
+            <input type="text" id="currency" [(ngModel)]="paymentForm.currency" name="currency" required>
+        </div>
+        <div>
+            <label for="provider">Provider:</label>
+            <input type="text" id="provider" [(ngModel)]="paymentForm.provider" name="provider" required>
+        </div>
+        <div>
+            <label for="accountInfo">Account Information:</label>
+            <input type="text" id="accountInfo" [(ngModel)]="paymentForm.accountInfo" name="accountInfo" required>
+        </div>
+        <div>
+            <label for="swiftCode">SWIFT Code:</label>
+            <input type="text" id="swiftCode" [(ngModel)]="paymentForm.swiftCode" name="swiftCode" required>
+        </div>
+        <button type="submit">Pay Now</button>
+    </form>
+</div>

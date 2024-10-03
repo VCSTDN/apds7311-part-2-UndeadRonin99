@@ -92,6 +92,9 @@ app.use('/api/auth/login', loginLimiter);
 // Routes
 const authRoutes = require('./routes/auth');
 app.use('/api/auth', authRoutes);
+const paymentRoutes = require('./routes/paymentRoutes'); 
+app.use('/api/payment', paymentRoutes); 
+
 
 // SSL Certificates
 const sslOptions = {

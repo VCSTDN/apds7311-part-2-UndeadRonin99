@@ -34,9 +34,16 @@ router.post(
     [
         body('username').trim().escape().matches(/^[a-zA-Z0-9_]{3,30}$/)
             .withMessage('Username must be 3-30 characters and can only contain letters, numbers, and underscores.'),
-        body('email').trim().isEmail().normalizeEmail().withMessage('Please enter a valid email address.'),
+        body('email').trim().isEmail().normalizeEmail()
+            .withMessage('Please enter a valid email address.'),
         body('password').trim().matches(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*]).{8,}$/)
             .withMessage('Password must be at least 8 characters long, include one uppercase letter, one lowercase letter, one number, and one special character.'),
+        body('fullName').trim().matches(/^[a-zA-Z ]+$/)
+            .withMessage('Name must not contain numbers or special characters'),
+        body('IDNumber').trim().matches(/^[0-9]{13}$/)
+            .withMessage('Please provide a valid South African ID number'),
+        body('AccountNumber').trim().escape().matches(/^[A-Z]{2}\d{2}[A-Z0-9]{1,30}$/)
+            .withMessage('Please provide a valid IBAN number'),
     ],
     registerUser
 );
@@ -47,6 +54,7 @@ router.post(
     loginLimiter, // Apply rate limiting to login route
     [
         body('username').trim().escape().matches(/^[a-zA-Z0-9_]{3,30}$/).withMessage('Username is required and must be alphanumeric.'),
+        body('AccountNumber').trim().escape().matches(/^\d{2}(0[1-9]|1[0-2])(0[1-9]|[12]\d|3[01])\d{7}\d$/),
         body('password').notEmpty().withMessage('Password is required.'),
     ],
     loginUser
