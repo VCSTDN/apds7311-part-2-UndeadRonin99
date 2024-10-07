@@ -1,7 +1,9 @@
 **YouTube Link:**
+
 https://youtu.be/jFaIM0AB4lg
 
-**Link to our working repository action works perfectly here**
+**Link to our working repository (action works perfectly here):**
+
 https://github.com/TylerFriedman/customer-portal.git
 
 ## Project Security and DevSecOps Evaluation
