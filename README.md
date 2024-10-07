@@ -1,8 +1,18 @@
-**YouTube Link:**
+## **Contributors**
+This project is developed as part of OPSC7312:
+
+- **ST10024454** Matteo Pita  
+- **ST10161340** Tyler Friedman  
+- **ST10046014** Nicholas James Malan  
+- **ST10043367** Reece Cunningham  
+- **ST10043352** Shira Bome
+
+
+## YouTube Link:
 
 https://youtu.be/jFaIM0AB4lg
 
-**Link to our working repository (action works perfectly here):**
+## Link to our working repository (action works perfectly here):
 
 https://github.com/TylerFriedman/customer-portal.git
 
