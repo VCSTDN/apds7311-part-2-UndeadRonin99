@@ -1,3 +1,4 @@
+// models/User.js
 const mongoose = require('mongoose');
 
 const UserSchema = new mongoose.Schema({
@@ -17,19 +18,27 @@ const UserSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  fullName: { // New field for the user's full name
+  fullName: {
+    // New field for the user's full name
     type: String,
     required: true,
   },
-  IDNumber: { // New field for the South African ID number
+  IDNumber: {
+    // New field for the South African ID number
     type: String,
     required: true,
     unique: true,
   },
-  AccountNumber: { // New field for the IBAN
+  AccountNumber: {
+    // New field for the IBAN
     type: String,
     required: true,
     unique: true,
+  },
+  role: {
+    type: String,
+    default: 'user', // Default role is 'user'
+    enum: ['user', 'employee', 'admin'], // Define possible roles
   },
   date: {
     type: Date,
