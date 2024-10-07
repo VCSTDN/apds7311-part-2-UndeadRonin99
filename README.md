@@ -1,5 +1,5 @@
 ## **Contributors**
-This project is developed as part of OPSC7312:
+This project is developed as part of APDS7311:
 
 - **ST10024454** Matteo Pita  
 - **ST10161340** Tyler Friedman  
