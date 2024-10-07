@@ -13,6 +13,9 @@ This project is developed as part of APDS7311:
 https://youtu.be/jFaIM0AB4lg
 
 ## Link to our working repository (action works perfectly here):
+**The action is currently not operational because we have not received the necessary authorization to utilize SonarCloud for executing our tests, which has resulted in a failure.**
+
+I did submit a request for this authorization; however, I did not receive a response prior to the completion of our submission.
 
 https://github.com/TylerFriedman/customer-portal.git
 
